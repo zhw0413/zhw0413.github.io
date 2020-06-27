@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>反转链表 | zhw0413的技术博客</title>
+  <title> 链表求和 | zhw0413的技术博客</title>
   <meta name="keywords" content=" 算法 链表 ">
-  <meta name="description" content="反转链表 | zhw0413的技术博客">
+  <meta name="description" content=" 链表求和 | zhw0413的技术博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="内容：定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。 示例:输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL 思路：要想反转链表，可以新建一个新的链表codeList，将head中的数值到放入新链表codeList中，用于输出反转链表。为了保证head链表不被修改，还需">
 <meta property="og:type" content="article">
@@ -289,9 +289,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-反转链表" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-链表求和" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">反转链表</h1>
+        <h1 class="article-title"> 链表求和</h1>
     
     <div class="article-meta">
         
@@ -308,12 +308,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-06-27 12:54:20'>2020-06-27 12:31</time>
+            发布时间 : <time class="date" title='最后更新: 2020-06-27 16:11:21'>2020-06-27 15:53</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:393</span>
+        <span>字数:669</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -332,7 +332,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#内容："><span class="toc-text">内容：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路："><span class="toc-text">思路：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#code"><span class="toc-text">code:</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#内容："><span class="toc-text">内容：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例："><span class="toc-text">示例：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例：-1"><span class="toc-text">示例：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路："><span class="toc-text">思路：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -348,15 +348,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="内容："><a href="#内容：" class="headerlink" title="内容："></a>内容：</h4><p>定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。</p>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><p>输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL<br>输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</p>
-<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>要想反转链表，可以新建一个新的链表codeList，将head中的数值到放入新链表codeList中，用于输出反转链表。为了保证head链表不被修改，还需要一个myhead = head，在myhead上进行操作，而不影响head的结构。</p>
-<p>对于链表为空或只有一个值时，可以直接输出链表。</p>
-<p>当链表不为空时，使用一个curNode链表节点进行过渡，将链表进行反转。将myhead的值赋给curNode。</p>
-<p>curNode.next = codeList.next ,codeList = curNode，这两步可以实现链表中值的反转，同时要记得将myhead的指针后移，指向下一个节点。</p>
-<p>当myhead.next=null时，要注意此时myhead中的最后一个节点还未传入codeList链表中，还需要借助一个链表进行如上的操作实现值的反转，方可结束操作。</p>
-<h4 id="code"><a href="#code" class="headerlink" title="code:"></a>code:</h4><pre><code>/**
-
+        <h4 id="内容："><a href="#内容：" class="headerlink" title="内容："></a>内容：</h4><p>给定两个用链表表示的整数，每个节点包含一个数位。这些数位是反向存放的，也就是个位排在链表首部。编写函数对这两个整数求和，并用链表形式返回结果。</p>
+<h4 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h4><p>输入：(7 -&gt; 1 -&gt; 6) + (5 -&gt; 9 -&gt; 2)，即617 + 295<br>输出：2 -&gt; 1 -&gt; 9，即912<br>进阶：假设这些数位是正向存放的，请再做一遍。</p>
+<h4 id="示例：-1"><a href="#示例：-1" class="headerlink" title="示例："></a>示例：</h4><p>输入：(6 -&gt; 1 -&gt; 7) + (2 -&gt; 9 -&gt; 5)，即617 + 295<br>输出：9 -&gt; 1 -&gt; 2，即912</p>
+<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>创建一个新的链表anws用来存放求和后的各个位置上的数。因为此时的数位是倒放的，我们可以直接对链表上节点的值进行相加，并赋给anws同时后移链表，准备进行下一个数的相加。此时要注意两数相加后会不会大于10。设置一个变量pre用来表示两数相加后是否需要进位。如果大于10，则pre=1，表示向前进位，那么计算下一位时，就要加上该值一起计算。如果l1,l2中有一个已经遍历完成，则可以将未遍历完的链表的后半部分连接到链表anws上。当然也要考虑pre的取值，避免忘记进位的情况发生。</p>
+<p>code：</p>
+<pre><code>/**
  \* Definition for singly-linked list.
  \* public class ListNode {
  \*   int val;
@@ -367,32 +364,63 @@
 
 class Solution {
 
-  public ListNode reverseList(ListNode head) {
-    ListNode codeList = new ListNode();
-    ListNode myhead = head;
+  public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+      //初始进位为0
+      int pre = 0;
+      //操作数
+      ListNode mid = new ListNode(0);
+      //返回头节点
+      ListNode anws = mid ;
 
-    if(head == null || head.next == null){
-      return head;
-    }
-    codeList.val = myhead.val;
-    myhead = myhead.next;
-    while(myhead.next != null){
-      ListNode curNode = new ListNode();
-      curNode.val = myhead.val;
-      curNode.next = codeList;
-      codeList = curNode;
-      myhead =myhead.next;
-    }
-    //myhead.next为空，但此时最后一个节点的值还未传入codeList中，需要借助curNode进行
-    ListNode curNode = new ListNode();
-    curNode.val = myhead.val;
-    curNode.next = codeList;
-    codeList = curNode;
-    return codeList;
+      //当l1和l2都不为null时进入while循环
+      while(l1! = null &amp;&amp; l2 != null){
+        //操作数赋值
+        mid.val = (l1.val+l2.val+pre)%10;
+        //更新进位
+        pre = (l1.val+l2.val+pre)/10;
+        //更新头节点
+        l1 = l1.next;
+        l2=l2.next;
 
+        //头节点更新后判断是否为空
+        if(l1==null){
+          //如果l1头节点为空且进位为0，则操作数的next直接为l2剩下的
+          if(pre==0) {
+            mid.next = l2;
+            return anws;
+          }else {
+            //如果有进位，则递归调用addTwoNumbers方法
+            mid.next = addTwoNumbers(l2,new ListNode(pre));
+            return anws;
+          }
+        }
+        //同上
+        if(l2 == null){
+          if(pre==0) {
+            mid.next = l1;
+            return anws;
+          }else {
+            mid.next = addTwoNumbers(l1,new ListNode(pre));
+            return anws;
+          }
+        }
+
+        //l1 l2更新后都不为null，则设置操作数为0 进入下一次while循环
+        mid.next =new ListNode(0);
+        mid = mid.next;
+      }
+      //l1为null，直接不能进入上面while循环的情况下，直接返回l2
+      if(l1==null){
+        return l2;
+      }//同上
+      else if(l2 ==null){
+        return l1;
+      }
+      return anws;
   }
 
-}</code></pre>
+}</code></pre><p>进阶：可使用反转链表的方式，将链表l1，l2直接进行自身反转后进行上面的类似操作，在显示结果前，将结果所在的链表再度反转，则可以直接实现。</p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 702530666@qq.com </span>
     </div>
