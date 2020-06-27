@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>简易计算器(加减乘除) | zhw0413的技术博客</title>
-  <meta name="keywords" content=" js 简易计算器实现 ">
-  <meta name="description" content="简易计算器(加减乘除) | zhw0413的技术博客">
+  <title>反转链表 | zhw0413的技术博客</title>
+  <meta name="keywords" content=" 算法 链表 ">
+  <meta name="description" content="反转链表 | zhw0413的技术博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="方法一：只有一个按钮需要绑定点击事件时可用 &lt;button id&#x3D;&quot;btn&quot; type&#x3D;&quot;button&quot;&gt;&lt;&#x2F;button&gt;  btn.onclick &#x3D; function(){  }方法二：通过方法响应点击事件，常用于多个按钮都需要绑定点击事件的情况 &lt;button id&#x3D;&quot;btn&quot; type&#x3D;&quot;">
 <meta property="og:type" content="article">
@@ -281,9 +281,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-简易计算器-加减乘除" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-反转链表" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">简易计算器(加减乘除)</h1>
+        <h1 class="article-title">反转链表</h1>
     
     <div class="article-meta">
         
@@ -293,19 +293,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color1">js 简易计算器实现</a>
+            <a class="color1">算法 链表</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-06-27 12:18:09'>2020-06-27 09:28</time>
+            发布时间 : <time class="date" title='最后更新: 2020-06-27 12:54:20'>2020-06-27 12:31</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:783</span>
+        <span>字数:393</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -324,7 +324,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#解法一："><span class="toc-text">解法一：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解法二："><span class="toc-text">解法二：</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#内容："><span class="toc-text">内容：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路："><span class="toc-text">思路：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#code"><span class="toc-text">code:</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -340,157 +340,51 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="解法一："><a href="#解法一：" class="headerlink" title="解法一："></a>解法一：</h4><p>使用switch case存储计算符号  +，-，*，/</p>
-<p>对button添加onclick点击事件，对两数进行计算操作</p>
-<p>注：document.getElementById()括号中如果放的是变量，则不加引号””;如果只是使用对应的id名，则需要用引号””包裹，方可进行调用。</p>
-<pre><code>&lt;input type=&quot;text&quot; id=&quot;num1&quot; placeholder=&quot;第一个数&quot;/&gt;
-    &lt;select  id=&quot;fh&quot;&gt;
-        &lt;option value=&quot;+&quot;&gt;+&lt;/option&gt;
-        &lt;option value=&quot;-&quot;&gt;-&lt;/option&gt;
-        &lt;option value=&quot;*&quot;&gt;*&lt;/option&gt;
-        &lt;option value=&quot;/&quot;&gt;/&lt;/option&gt;
-    &lt;/select&gt;
-    &lt;input type=&quot;text&quot; id=&quot;num2&quot; placeholder=&quot;第二个数&quot;&gt;
-    =
-   &lt;input type=&quot;text&quot; id=&quot;result&quot; disabled&gt;
-    &lt;div&gt;
-        &lt;button type=&quot;button&quot; id=&quot;btn&quot;&gt;计算&lt;/button&gt;
-    &lt;/div&gt;
+        <h4 id="内容："><a href="#内容：" class="headerlink" title="内容："></a>内容：</h4><p>定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><p>输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL<br>输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</p>
+<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>要想反转链表，可以新建一个新的链表codeList，将head中的数值到放入新链表codeList中，用于输出反转链表。为了保证head链表不被修改，还需要一个myhead = head，在myhead上进行操作，而不影响head的结构。</p>
+<p>对于链表为空或只有一个值时，可以直接输出链表。</p>
+<p>当链表不为空时，使用一个curNode链表节点进行过渡，将链表进行反转。将myhead的值赋给curNode。</p>
+<p>curNode.next = codeList.next ,codeList = curNode，这两步可以实现链表中值的反转，同时要记得将myhead的指针后移，指向下一个节点。</p>
+<p>当myhead.next=null时，要注意此时myhead中的最后一个节点还未传入codeList链表中，还需要借助一个链表进行如上的操作实现值的反转，方可结束操作。</p>
+<h4 id="code"><a href="#code" class="headerlink" title="code:"></a>code:</h4><pre><code>/**
 
+ \* Definition for singly-linked list.
+ \* public class ListNode {
+ \*   int val;
+ \*   ListNode next;
+ \*   ListNode(int x) { val = x; }
+ \* }
+ */
 
+class Solution {
 
-    &lt;script type=&quot;text/javascript&quot;&gt;
-        var num1 = document.getElementById(&quot;num1&quot;);
-        var num2 = document.getElementById(&quot;num2&quot;);
-        var fh = document.getElementById(&quot;fh&quot;);
-        var result = document.getElementById(&quot;result&quot;);
-        var btn = document.getElementById(&quot;btn&quot;);
+  public ListNode reverseList(ListNode head) {
+    ListNode codeList = new ListNode();
+    ListNode myhead = head;
 
-        function computer(fh,n1,n2,rs){
-            var sum = 0;
-            switch (fh) {
-                case &quot;+&quot;:
-                    sum = n1 + n2;
-                    break;
-                case &quot;-&quot;:
-                    sum = n1 - n2;
-                    break;
-                case &quot;*&quot;:
-                    sum = n1 * n2;
-                    break;
-                case &quot;/&quot;:
-                    sum = n1 / n2;
-                    break;
-            }
-            rs.value = sum;
-        }
+    if(head == null || head.next == null){
+      return head;
+    }
+    codeList.val = myhead.val;
+    myhead = myhead.next;
+    while(myhead.next != null){
+      ListNode curNode = new ListNode();
+      curNode.val = myhead.val;
+      curNode.next = codeList;
+      codeList = curNode;
+      myhead =myhead.next;
+    }
+    //myhead.next为空，但此时最后一个节点的值还未传入codeList中，需要借助curNode进行
+    ListNode curNode = new ListNode();
+    curNode.val = myhead.val;
+    curNode.next = codeList;
+    codeList = curNode;
+    return codeList;
 
-        btn.onclick = function(){
-            //获取并处理输入的数字
-            var number1 = parseFloat(num1.value);
-            var number2 = parseFloat(num2.value);
-            var symbol = fh.value;
-            //调用计算器功能
-            computer(symbol,number1,number2,result);
-        }
+  }
 
-&lt;/script&gt;</code></pre><h4 id="解法二："><a href="#解法二：" class="headerlink" title="解法二："></a>解法二：</h4><p>分别对 +，-,*,/  设置各自的按钮，并添加对应的点击事件，点击后可执行相应的操作，并显示出结果</p>
-<p>注：数值型的字符串，通过+、+= 运算符连接后，变成了字符串拼接，而不是数值计算。</p>
-<p>​      解决方法：使用Number（）将对象的值转换为数字，便可进行加减乘除运算。</p>
-<pre><code>&lt;!DOCTYPE &lt;!DOCTYPE html&gt;
-
-  &lt;head&gt;
-
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-
-  &lt;/head&gt;
-
-  &lt;body&gt;
-
-        &lt;table border=&quot;1&quot; style=&quot;position:center;&quot;&gt; 
-
-      &lt;tr&gt;
-        &lt;th&gt;第一个数&lt;/th&gt;
-        &lt;td&gt;
-          &lt;input type=&quot;text&quot; id=&quot;num1&quot;&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
-      &lt;tr&gt;
-        &lt;th&gt;第二个数&lt;/th&gt;
-        &lt;td&gt;
-          &lt;input type=&quot;text&quot; id=&quot;num2&quot;&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
-      &lt;tr&gt;
-        &lt;td colspan=&quot;2&quot;&gt;
-          &lt;button type=&quot;button&quot; onclick=&quot;add()&quot;&gt;+&lt;/button&gt;
-          &lt;button type=&quot;button&quot; onclick=&quot;subtract()&quot;&gt;-&lt;/button&gt;
-          &lt;button type=&quot;button&quot; onclick=&quot;multiply()&quot;&gt;*&lt;/button&gt;
-          &lt;button type=&quot;button&quot; onclick=&quot;divide()&quot;&gt;/&lt;/button&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
-      &lt;tr colspan=&quot;2&quot;&gt;
-        &lt;td&gt;
-          &lt;input type=&quot;text&quot; id=&quot;result&quot; disabled&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
-    &lt;/table&gt;
-
-    &lt;script&gt;
-      var sum =document.getElementById(&quot;result&quot;);
-      var res = 0;      
-
-      // var n1 = parseFloat(number1.value);
-      // var n2 = parseFloat(number2.value);
-      // console.log(n1);
-
-      function add(){
-        var n1 = document.getElementById(&quot;num1&quot;).value;
-        var n2 = document.getElementById(&quot;num2&quot;).value;
-
-        // console.log(n1);
-        // console.log(n2);
-        // var number1 = parseFloat(n1.value);
-        // var number2 = parseFloat(n2.value);        
-
-        res = Number(n1) + Number(n2);
-        sum.value = res;
-        console.log(res);
-      }
-
-      function subtract(){
-        var n1 = document.getElementById(&quot;num1&quot;).value;
-        var n2 = document.getElementById(&quot;num2&quot;).value;
-        res = Number(n1) - Number(n2);
-        sum.value = res;
-      }
-
-      function multiply(){
-        var n1 = document.getElementById(&quot;num1&quot;).value;
-        var n2 = document.getElementById(&quot;num2&quot;).value;
-        res = Number(n1) * Number(n2);
-        sum.value = res;
-      }
-
-      function divide(){
-        var n1 = document.getElementById(&quot;num1&quot;).value;
-        var n2 = document.getElementById(&quot;num2&quot;).value;
-        res = Number(n1) / Number(n2);
-        sum.value = res;
-      }
-
-
-
-    &lt;/script&gt;
-
-  &lt;/body&gt;
-
-&lt;/html&gt;</code></pre>
+}</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 702530666@qq.com </span>
     </div>
