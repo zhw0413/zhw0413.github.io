@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>删除中间节点 | zhw0413的技术博客</title>
-  <meta name="keywords" content=" 算法 链表 ">
-  <meta name="description" content="删除中间节点 | zhw0413的技术博客">
+  <title>简易计算器(加减乘除) | zhw0413的技术博客</title>
+  <meta name="keywords" content=" js ">
+  <meta name="description" content="简易计算器(加减乘除) | zhw0413的技术博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="内容：实现一种算法，删除单向链表中间的某个节点（即不是第一个或最后一个节点），假定你只能访问该节点。 示例：输入：单向链表a-&gt;b-&gt;c-&gt;d-&gt;e-&gt;f中的节点c结果：不返回任何数据，但该链表变为a-&gt;b-&gt;d-&gt;e-&gt;f 思路：设一个新的节点p，指向要删除的节点的下一个节点。将要删除节点的值赋为p节点对应的值，删去节点后的下一个节点为p节点">
 <meta property="og:type" content="article">
@@ -273,9 +273,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-删除中间节点" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-简易计算器-加减乘除" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">删除中间节点</h1>
+        <h1 class="article-title">简易计算器(加减乘除)</h1>
     
     <div class="article-meta">
         
@@ -285,19 +285,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color1">算法 链表</a>
+            <a class="color3">js</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-06-26 18:21:50'>2020-06-26 18:08</time>
+            发布时间 : <time class="date" title='最后更新: 2020-06-27 09:40:08'>2020-06-27 09:28</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:193</span>
+        <span>字数:313</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -316,7 +316,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#内容："><span class="toc-text">内容：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例："><span class="toc-text">示例：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路："><span class="toc-text">思路：</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#解法一："><span class="toc-text">解法一：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解法二："><span class="toc-text">解法二：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -332,27 +332,61 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="内容："><a href="#内容：" class="headerlink" title="内容："></a>内容：</h4><p>实现一种算法，删除单向链表中间的某个节点（即不是第一个或最后一个节点），假定你只能访问该节点。</p>
-<h4 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h4><p>输入：单向链表a-&gt;b-&gt;c-&gt;d-&gt;e-&gt;f中的节点c<br>结果：不返回任何数据，但该链表变为a-&gt;b-&gt;d-&gt;e-&gt;f</p>
-<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>设一个新的节点p，指向要删除的节点的下一个节点。将要删除节点的值赋为p节点对应的值，删去节点后的下一个节点为p节点的下一个节点</p>
-<p>code：</p>
-<pre><code>/**
+        <h4 id="解法一："><a href="#解法一：" class="headerlink" title="解法一："></a>解法一：</h4><p>使用switch case存储计算符号  +，-，*，/</p>
+<p>对button添加onclick点击事件，对两数进行计算操作</p>
+<pre><code>&lt;input type=&quot;text&quot; id=&quot;num1&quot; placeholder=&quot;第一个数&quot;/&gt;
+    &lt;select  id=&quot;fh&quot;&gt;
+        &lt;option value=&quot;+&quot;&gt;+&lt;/option&gt;
+        &lt;option value=&quot;-&quot;&gt;-&lt;/option&gt;
+        &lt;option value=&quot;*&quot;&gt;*&lt;/option&gt;
+        &lt;option value=&quot;/&quot;&gt;/&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;input type=&quot;text&quot; id=&quot;num2&quot; placeholder=&quot;第二个数&quot;&gt;
+    =
+   &lt;input type=&quot;text&quot; id=&quot;result&quot; disabled&gt;
+    &lt;div&gt;
+        &lt;button type=&quot;button&quot; id=&quot;btn&quot;&gt;计算&lt;/button&gt;
+    &lt;/div&gt;
 
- * Definition for singly-linked list.
- * public class ListNode {
- * int val;
- * ListNode next;
- * ListNode(int x) { val = x; }
- * }
-   */
-   class Solution {
-   public void deleteNode(ListNode node) {
-       ListNode p = new ListNode();
-       p = node.next;
-       node.next = p.next;
-       node.val = p.val;
-   }
-   }</code></pre>
+
+
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        var num1 = document.getElementById(&quot;num1&quot;);
+        var num2 = document.getElementById(&quot;num2&quot;);
+        var fh = document.getElementById(&quot;fh&quot;);
+        var result = document.getElementById(&quot;result&quot;);
+        var btn = document.getElementById(&quot;btn&quot;);
+
+        function computer(fh,n1,n2,rs){
+            var sum = 0;
+            switch (fh) {
+                case &quot;+&quot;:
+                    sum = n1 + n2;
+                    break;
+                case &quot;-&quot;:
+                    sum = n1 - n2;
+                    break;
+                case &quot;*&quot;:
+                    sum = n1 * n2;
+                    break;
+                case &quot;/&quot;:
+                    sum = n1 / n2;
+                    break;
+            }
+            rs.value = sum;
+        }
+
+        btn.onclick = function(){
+            //获取并处理输入的数字
+            var number1 = parseFloat(num1.value);
+            var number2 = parseFloat(num2.value);
+            var symbol = fh.value;
+            //调用计算器功能
+            computer(symbol,number1,number2,result);
+        }
+
+&lt;/script&gt;</code></pre><h4 id="解法二："><a href="#解法二：" class="headerlink" title="解法二："></a>解法二：</h4><p>分别对 +，-,*,/  设置各自的按钮，并添加对应的点击事件，点击后可执行相应的操作，并显示出结果</p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 702530666@qq.com </span>
     </div>
