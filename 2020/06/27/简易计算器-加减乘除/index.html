@@ -124,7 +124,7 @@
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="8">
-<input type="hidden" id="yelog_site_word_count" value="2.5k">
+<input type="hidden" id="yelog_site_word_count" value="2.6k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -292,12 +292,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-06-27 12:05:02'>2020-06-27 09:28</time>
+            发布时间 : <time class="date" title='最后更新: 2020-06-27 12:10:34'>2020-06-27 09:28</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:682</span>
+        <span>字数:783</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -334,6 +334,7 @@
       
         <h4 id="解法一："><a href="#解法一：" class="headerlink" title="解法一："></a>解法一：</h4><p>使用switch case存储计算符号  +，-，*，/</p>
 <p>对button添加onclick点击事件，对两数进行计算操作</p>
+<p>注：document.getElementById()括号中如果放的是变量，则不加引号””;如果只是使用对应的id名，则需要用引号””包裹，方可进行调用。</p>
 <pre><code>&lt;input type=&quot;text&quot; id=&quot;num1&quot; placeholder=&quot;第一个数&quot;/&gt;
     &lt;select  id=&quot;fh&quot;&gt;
         &lt;option value=&quot;+&quot;&gt;+&lt;/option&gt;
@@ -386,6 +387,8 @@
         }
 
 &lt;/script&gt;</code></pre><h4 id="解法二："><a href="#解法二：" class="headerlink" title="解法二："></a>解法二：</h4><p>分别对 +，-,*,/  设置各自的按钮，并添加对应的点击事件，点击后可执行相应的操作，并显示出结果</p>
+<p>注：数值型的字符串，通过+、+= 运算符连接后，变成了字符串拼接，而不是数值计算。</p>
+<p>​      解决方法：使用Number（）将对象的值转换为数字，便可进行加减乘除运算。</p>
 <pre><code>&lt;!DOCTYPE &lt;!DOCTYPE html&gt;
 
   &lt;head&gt;
