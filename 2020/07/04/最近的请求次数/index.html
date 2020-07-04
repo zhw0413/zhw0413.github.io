@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>js中的点击事件onclick实现 | zhw0413的技术博客</title>
-  <meta name="keywords" content=" js button ">
-  <meta name="description" content="js中的点击事件onclick实现 | zhw0413的技术博客">
+  <title>最近的请求次数 | zhw0413的技术博客</title>
+  <meta name="keywords" content=" 算法 队列 ">
+  <meta name="description" content="最近的请求次数 | zhw0413的技术博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="内容：给定两个用链表表示的整数，每个节点包含一个数位。这些数位是反向存放的，也就是个位排在链表首部。编写函数对这两个整数求和，并用链表形式返回结果。 示例：输入：(7 -&gt; 1 -&gt; 6) + (5 -&gt; 9 -&gt; 2)，即617 + 295输出：2 -&gt; 1 -&gt; 9，即912进阶：假设这些数位是正向存放的，请再做一遍。 示例：输入：(6 -&gt; 1 -&amp;">
 <meta property="og:type" content="article">
@@ -301,9 +301,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-js中的点击事件onclick实现" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-最近的请求次数" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">js中的点击事件onclick实现</h1>
+        <h1 class="article-title">最近的请求次数</h1>
     
     <div class="article-meta">
         
@@ -313,19 +313,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">js button</a>
+            <a class="color1">算法 队列</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-06-27 10:38:31'>2020-06-27 10:29</time>
+            发布时间 : <time class="date" title='最后更新: 2020-07-04 12:54:51'>2020-07-04 12:23</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:122</span>
+        <span>字数:433</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -344,7 +344,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法一："><span class="toc-text">方法一：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法二："><span class="toc-text">方法二：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法三："><span class="toc-text">方法三：</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#内容："><span class="toc-text">内容：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例："><span class="toc-text">示例：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#提示："><span class="toc-text">提示：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路："><span class="toc-text">思路：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#code："><span class="toc-text">code：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -360,22 +360,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h4><p>只有一个按钮需要绑定点击事件时可用</p>
-<pre><code>&lt;button id=&quot;btn&quot; type=&quot;button&quot;&gt;&lt;/button&gt;
+        <h4 id="内容："><a href="#内容：" class="headerlink" title="内容："></a>内容：</h4><p>写一个 RecentCounter 类来计算最近的请求。</p>
+<p>它只有一个方法：ping(int t)，其中 t 代表以毫秒为单位的某个时间。</p>
+<p>返回从 3000 毫秒前到现在的 ping 数。</p>
+<p>任何处于 [t - 3000, t] 时间范围之内的 ping 都将会被计算在内，包括当前（指 t 时刻）的 ping。</p>
+<p>保证每次对 ping 的调用都使用比之前更大的 t 值。</p>
+<h4 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h4><p>输入：inputs = [“RecentCounter”,”ping”,”ping”,”ping”,”ping”], inputs = [[],[1],[100],[3001],[3002]]<br>输出：[null,1,2,3,3]</p>
+<h4 id="提示："><a href="#提示：" class="headerlink" title="提示："></a>提示：</h4><p>每个测试用例最多调用 10000 次 ping。<br>每个测试用例会使用严格递增的 t 值来调用 ping。<br>每次调用 ping 都有 1 &lt;= t &lt;= 10^9。</p>
+<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>将传入的ping循环不断放入队列queue中，同时判断传入的ping是否超时，如果超时，使用queue.poll移除该ping，循环结束后返回的队列长度即为满足要求的最近请求次数。</p>
+<p>由于每次调的ping都比之前的更大，所以可以只考虑下限，不考虑上限。也因为这个原因，只需要比较队列的开头即可知道是否满足。即，队头的元素大小满足，意味着整个队列就都满足。</p>
+<h4 id="code："><a href="#code：" class="headerlink" title="code："></a>code：</h4><pre><code>class RecentCounter {
+  private Queue&lt;Integer&gt; queue;
 
-btn.onclick = function(){
+  public RecentCounter() {
+    queue = new LinkedList&lt;&gt;();
+  }
 
-}</code></pre><h4 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h4><p>通过方法响应点击事件，常用于多个按钮都需要绑定点击事件的情况</p>
-<pre><code>&lt;button id=&quot;btn&quot; type=&quot;button&quot;  onclick=&quot;add()&quot;&gt;&lt;/button&gt;
+  public int ping(int t) {
+    queue.add(t);
+    //add增加一个元索。如果队列已满，则抛出一个IIIegaISlabEepeplian异常
 
-function add(){
+    while ((t - 3000) &gt; queue.peek()) {
+       queue.poll();
+    }
+    //poll移除并返问队列头部的元素.如果队列为空，则返回null
+    //peek返回队列头部的元素. 如果队列为空，则返回null
 
-}</code></pre><h4 id="方法三："><a href="#方法三：" class="headerlink" title="方法三："></a>方法三：</h4><p>监听点击事件</p>
-<pre><code>&lt;button id=&quot;btn&quot; type=&quot;button&quot;  onclick=&quot;add()&quot;&gt;&lt;/button&gt;
+    return queue.size();
+  }
+}
 
-btn.addEventListener(&#39;click&#39;,function(){
-
-})</code></pre>
+/**
+ \* Your RecentCounter object will be instantiated and called as such:
+ \* RecentCounter obj = new RecentCounter();
+ \* int param_1 = obj.ping(t);
+ */</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 702530666@qq.com </span>
     </div>
