@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>回文链表 | zhw0413的技术博客</title>
-  <meta name="keywords" content=" 算法 链表 ">
-  <meta name="description" content="回文链表 | zhw0413的技术博客">
+  <title>最小的k个数 | zhw0413的技术博客</title>
+  <meta name="keywords" content=" 算法 队列 ">
+  <meta name="description" content="最小的k个数 | zhw0413的技术博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="内容：写一个 RecentCounter 类来计算最近的请求。 它只有一个方法：ping(int t)，其中 t 代表以毫秒为单位的某个时间。 返回从 3000 毫秒前到现在的 ping 数。 任何处于 [t - 3000, t] 时间范围之内的 ping 都将会被计算在内，包括当前（指 t 时刻）的 ping。 保证每次对 ping 的调用都使用比之前更大的 t 值。 示例：输入：inputs">
 <meta property="og:type" content="article">
@@ -309,9 +309,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-回文链表" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-最小的k个数" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">回文链表</h1>
+        <h1 class="article-title">最小的k个数</h1>
     
     <div class="article-meta">
         
@@ -321,19 +321,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color1">算法 链表</a>
+            <a class="color1">算法 队列</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-06-26 18:13:58'>2020-06-26 09:45</time>
+            发布时间 : <time class="date" title='最后更新: 2020-07-04 18:58:23'>2020-07-04 17:46</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:466</span>
+        <span>字数:218</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -352,7 +352,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#内容："><span class="toc-text">内容：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-1"><span class="toc-text">示例 1:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-2"><span class="toc-text">示例 2:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路："><span class="toc-text">思路：</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#内容："><span class="toc-text">内容：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-1："><span class="toc-text">示例 1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-2："><span class="toc-text">示例 2：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路："><span class="toc-text">思路：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#code："><span class="toc-text">code：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -368,70 +368,37 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="内容："><a href="#内容：" class="headerlink" title="内容："></a>内容：</h4><p>请判断一个链表是否为回文链表。</p>
-<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h4><p>输入: 1-&gt;2<br>输出: false</p>
-<h4 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h4><p>输入: 1-&gt;2-&gt;2-&gt;1<br>输出: true</p>
-<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>回文链表正看与反看都一样。链表为空和链表中只有一个值时，都属于回文链表。<br>解法一：将链表转换成数组的形式，再从数组两头对数值进行比较。如果值不相同，则输出false，表示该链表不是回文链表；否则，当两两比较均成功时，输出true，表示该链表为回文链表。</p>
-<p>code：</p>
-<pre><code>/**
+        <h4 id="内容："><a href="#内容：" class="headerlink" title="内容："></a>内容：</h4><p>输入整数数组 arr ，找出其中最小的 k 个数。例如，输入4、5、1、6、2、7、3、8这8个数字，则最小的4个数字是1、2、3、4。</p>
+<h4 id="示例-1："><a href="#示例-1：" class="headerlink" title="示例 1："></a>示例 1：</h4><p>输入：arr = [3,2,1], k = 2<br>输出：[1,2] 或者 [2,1]</p>
+<h4 id="示例-2："><a href="#示例-2：" class="headerlink" title="示例 2："></a>示例 2：</h4><p>输入：arr = [0,1,2,1], k = 1<br>输出：[0]</p>
+<p>限制：</p>
+<p>0 &lt;= k &lt;= arr.length &lt;= 10000<br>0 &lt;= arr[i] &lt;= 10000</p>
+<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>暴力解法：使用冒泡排序将数组按从小到大的顺序进行排序，然后找去前k个小的书放入新的数组中即可完成操作。</p>
+<h4 id="code："><a href="#code：" class="headerlink" title="code："></a>code：</h4><pre><code>class Solution {
 
- * Definition for singly-linked list.
+  public int[] getLeastNumbers(int[] arr, int k) {
+    int n = arr.length;
 
- * public class ListNode {//对链表进行初始化，数值var和指针next
+    for(int i = 0; i &lt; n; i++){
+      for(int j = 1; j &lt; n-i; j++){
+        if(arr[j-1] &gt; arr[j]){
+          int t =0 ;
+          t = arr[j-1];
+          arr[j-1] = arr[j];
+          arr[j] = t;
+        }
+      }
+    }
 
- * int val;
+    int[] num = new int[k];
+    for(int i = 0; i &lt; k; i++){
+      num[i] = arr[i];
+    }
 
- * ListNode next;
+    return num;
+  }
 
- * ListNode(int x) { val = x; }
-
- * }
-   */
-   class Solution {
-   public boolean isPalindrome(ListNode head) {
-
-       //用于判断当链表为空或只有一个指针的情况
-       // if(head == null || head.next == null){
-       //     return true;
-       // }
-       while(head != null){
-           if(head.next == null){
-               return true;
-           }
-
-           //初始化一个len长度用来计算链表的长度
-           int len = 0;
-           for(ListNode a = head; a != null; a=a.next){
-               len++;
-           }
-
-           //初始化一个数组link，长度为len，用于存储链表中的数值
-           int[] link = new int[len];
-           int i = 0;
-           for(ListNode a = head; a != null; a = a.next){
-               link[i] = a.val;
-               i++;
-           }
-
-           //借助i、j，对数组两边的值进行比较
-           int j = 0;      
-           for(j = 0, i = len -1; j &lt; i; j++ ,i--){
-               if(link[i] != link[j]){
-                   break;
-               }
-           }
-
-           //当循环后的i&lt;=j，说明已经循环比较过数组的中心处，表示数组比较已完成，说明该链表为回文链表
-           if(i &lt;= j){
-               return true;
-           }
-           else return false;
-       }
-       return true;
-
-   }
-   }</code></pre><p>解法二：遍历到链表的最后一个节点，将最后一个节点与第一个节点进行比较，将最后一个节点置空。再对置空的前一个节点和比较后节点的下一个节点进行比较。重复之前步骤，直到找到空节点。</p>
-
+}</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 702530666@qq.com </span>
     </div>
